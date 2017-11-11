@@ -6,13 +6,27 @@ package com.java8.edu.lambda_exp.edu_lambda1;
 public class Employee {
 
     private String name;
-    private int age;
+    private Integer age;
     private double salary;
+    private Status status;
 
-    public Employee(String name, int age, double salary) {
+    public Employee(String name, Integer age, double salary, Status status) {
         this.name = name;
         this.age = age;
         this.salary = salary;
+        this.status = status;
+    }
+
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Employee{");
+        sb.append("name='").append(name).append('\'');
+        sb.append(", age=").append(age);
+        sb.append(", salary=").append(salary);
+        sb.append(", status=").append(status);
+        sb.append('}');
+        return sb.toString();
     }
 
     @Override
@@ -22,9 +36,9 @@ public class Employee {
 
         Employee employee = (Employee) o;
 
-        if (age != employee.age) return false;
         if (Double.compare(employee.salary, salary) != 0) return false;
-        return name != null ? name.equals(employee.name) : employee.name == null;
+        if (name != null ? !name.equals(employee.name) : employee.name != null) return false;
+        return age != null ? age.equals(employee.age) : employee.age == null;
     }
 
     @Override
@@ -32,20 +46,18 @@ public class Employee {
         int result;
         long temp;
         result = name != null ? name.hashCode() : 0;
-        result = 31 * result + age;
+        result = 31 * result + (age != null ? age.hashCode() : 0);
         temp = Double.doubleToLongBits(salary);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("Employee{");
-        sb.append("name='").append(name).append('\'');
-        sb.append(", age=").append(age);
-        sb.append(", salary=").append(salary);
-        sb.append('}');
-        return sb.toString();
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public String getName() {
@@ -56,11 +68,11 @@ public class Employee {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -70,5 +82,11 @@ public class Employee {
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    public enum Status{
+        FREE,
+        BUSY,
+        VOCATION;
     }
 }

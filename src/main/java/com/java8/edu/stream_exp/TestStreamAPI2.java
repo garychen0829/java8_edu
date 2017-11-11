@@ -19,17 +19,42 @@ import java.util.stream.Stream;
  */
 public class TestStreamAPI2 {
     List<Employee> employees = Arrays.asList(
-            new Employee("张三",18, 9999.99),
-            new Employee("张三",18, 9999.99),
-            new Employee("张三",18, 9999.99),
-            new Employee("张三",18, 9999.99),
-            new Employee("张三",18, 9999.99),
-            new Employee("李四",21, 3333.33),
-            new Employee("赵六",44, 5555.55),
-            new Employee("陈七",44, 4444.44),
-            new Employee("王五",31, 6666.6));
+            new Employee("张三",18, 9999.99,null),
+            new Employee("张三",18, 9999.99,null),
+            new Employee("张三",18, 9999.99,null),
+            new Employee("张三",17, 9999.99,null),
+            new Employee("张三",19, 9999.99,null),
+            new Employee("李四",21, 3333.33,null),
+            new Employee("赵六",44, 5555.55,null),
+            new Employee("陈七",44, 4444.44,null),
+            new Employee("王五",31, 6666.6,null));
 
     //中间操作
+    /*
+    sorted()                产生一个新流，其中按自然顺序排序  (Comparable)
+    sorted(Comparatorcomp)  产生一个新流，其中按比较器顺序排序(Comparator)
+     */
+    @Test
+    public void test07(){
+        List<String> list = Arrays.asList("aa","ee","cc","dd","bb");
+        list.stream()
+                .sorted()
+                .forEach(System.out::println);
+
+        System.out.println("------------------------------------------");
+
+        employees.stream()
+                .sorted((e1,e2) -> {
+                    if (e1.getAge() == e2.getAge()){//名称相同比年龄
+                        return e1.getName().compareTo(e2.getName());
+                    }else {
+                        return -e1.getAge().compareTo(e2.getAge());  // "-" 倒序
+                    }
+                }).forEach(System.out::println);
+
+    }
+
+
     /*
         映射
         map(Function f)                  接收一个函数作为参数，该函数会被应用到每个元素上，并将其映射成一个新的元素。

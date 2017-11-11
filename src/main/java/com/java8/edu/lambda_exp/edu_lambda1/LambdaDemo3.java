@@ -27,9 +27,9 @@ public class LambdaDemo3 {
     }
 
     //age > 20 的数据
-    List<Employee> employees = Arrays.asList(new Employee("张三",18, 9999.99),
-            new Employee("李四",21, 3333.33),
-            new Employee("王五",31, 6666.6));
+    List<Employee> employees = Arrays.asList(new Employee("张三",18, 9999.99,null),
+            new Employee("李四",21, 3333.33,null),
+            new Employee("王五",31, 6666.6,null));
     @Test
     public void test03(){
         List<Employee> list = filterEmployees(employees);

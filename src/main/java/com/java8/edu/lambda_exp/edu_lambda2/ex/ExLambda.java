@@ -17,11 +17,11 @@ public class ExLambda {
 
     //age > 20 的数据
     List<Employee> employees = Arrays.asList(
-            new Employee("张三",18, 9999.99),
-            new Employee("李四",21, 3333.33),
-            new Employee("赵六",44, 5555.55),
-            new Employee("陈七",44, 4444.44),
-            new Employee("王五",31, 6666.6));
+            new Employee("张三",18, 9999.99,null),
+            new Employee("李四",21, 3333.33,null),
+            new Employee("赵六",44, 5555.55,null),
+            new Employee("陈七",44, 4444.44,null),
+            new Employee("王五",31, 6666.6,null));
 
     /**
      * 用Collections.sort()方法,
