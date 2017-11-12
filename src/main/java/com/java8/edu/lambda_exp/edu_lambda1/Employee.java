@@ -7,10 +7,10 @@ public class Employee {
 
     private String name;
     private Integer age;
-    private double salary;
+    private Double salary;
     private Status status;
 
-    public Employee(String name, Integer age, double salary, Status status) {
+    public Employee(String name, Integer age, Double salary, Status status) {
         this.name = name;
         this.age = age;
         this.salary = salary;
@@ -76,11 +76,11 @@ public class Employee {
         this.age = age;
     }
 
-    public double getSalary() {
+    public Double getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(Double salary) {
         this.salary = salary;
     }
 
