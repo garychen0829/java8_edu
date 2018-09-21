@@ -1,6 +1,5 @@
 package com.java8.edu.java_interview.exam2;
 
-import com.alibaba.fastjson.JSONObject;
 
 import java.util.*;
 import java.util.concurrent.*;
@@ -55,7 +54,6 @@ public class TestExam2 {
                 ThreadReturnObj threadReturnObj = (ThreadReturnObj) future.get();
                 //判断 & add(s)
                 ConsultResult consultResult = threadReturnObj.getConsultResult();
-                //System.out.println(JSONObject.toJSONString(consultResult));
                 if (consultResult.isEnable()) {
                     //add 可用的paymentType
                     list.add(threadReturnObj.getPaymentType());
