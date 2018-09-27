@@ -13,34 +13,45 @@ public class TestExam3 {
 
     public static void main(String[] args) {
         TestExam3 t = new TestExam3();
-        Product p = new Product();
-        t.execute(p);
+        Product p1 = new Product();
+        Product p2 = new Product();
+        Product p3 = new Product();
+
+        List<Product> list = new ArrayList<Product>() {{
+            add(p1);
+            add(p2);
+            add(p3);
+        }};
+        Long originTotalAmount = sum(list);
+        Long totalAmount = 100L;
+        if (originTotalAmount == 0) {
+            return;
+        }
+        //遍历
+        for (Product p : list) {
+            t.execute(p, originTotalAmount, totalAmount);
+        }
     }
 
-    public void execute(Product p) {
-        Long totalAmount = 0L;
-        List<Product> list = getAllList();
-        Long amount = p.getUnitPrice() * p.getQuantity() / sum(list) * totalAmount;
+    public void execute(Product p, Long originTotalAmount, long totalAmount) {
+        Long amount = 0L;
+        if (p == null) {
+            amount = p.getUnitPrice() * p.getQuantity() / originTotalAmount * totalAmount;
+        }
+
         System.out.println("产品按照金额占比分摊下的最终分摊后的金额:" + amount);
     }
 
-    private List<Product> getAllList() {
-        Product pa = new Product();
-        Product pb = new Product();
-        Product pc = new Product();
-        List<Product> list = new ArrayList<>();
-        list.add(pa);
-        list.add(pb);
-        list.add(pc);
-        return list;
-    }
+    public static Long sum(List<Product> list) {
+        if (list == null) {
+            return 0L;
+        }
 
-    public Long sum(List<Product> list) {
         Long sum = 0L;
+        Product p;
         for (int i = 0; i < list.size(); i++) {
-            Product p = list.get(i);
-            Long total = p.getUnitPrice() * p.getQuantity();
-            sum += total;
+            p = list.get(i);
+            sum += p.getUnitPrice() * p.getQuantity();
         }
         return sum;
     }
